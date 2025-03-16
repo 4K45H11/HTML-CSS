@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Details</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">My Health</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calorie.html">Calorie Report</a></li>
+                <li><a href="workout.html">Workouts</a></li>
+            </ul>
+        </nav>
+        <h1>Calorie Details</h1>
+    </header>
+    <main>
+        <section id="calorieDetails">
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 My Health App. All Rights Reserved.</p>
+    </footer>
+    <script>
+        let meals = [
+            {
+                id : "1", //have to be careful about typeError.
+                meal : "Breakfast",
+                item : "Dosa",
+                cal : 200
+            },
+            {
+                id : "2",
+                meal : "Lunch",
+                item : "Chicken Rice",
+                cal : 600
+            },
+            {
+                id : "3",
+                meal : "Dinner",
+                item : "Roti Sabji",
+                cal : 250
+            }
+        ]
+
+        //accuire Id
+        function getElementId(id){
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+        let foodId = getElementId('name')
+
+        let mealItem;
+        for(let i = 0; i<meals.length; i++){
+            if(meals[i].id === foodId){
+                mealItem = meals[i]
+            }
+        }
+    
+        let calorieDetailElement = document.getElementById('calorieDetails')
+        if(mealItem){
+            calorieDetailElement.innerHTML = `
+                <h2>${mealItem.meal}</h2>
+                <ul>
+                    <li>Meal : ${mealItem.meal}</li>
+                    <li>Item : ${mealItem.item}</li>
+                    <li>Calories : ${mealItem.cal} cal</li>
+                </ul>
+            `
+        }
+    </script>
+</body>
+</html>

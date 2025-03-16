@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dish Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header class="container-fluid bg-dark">
+        <nav class="navbar navbar-expand-lg  ">
+            <div class="d-flex justify-content-between container-fluid">
+
+                <div>
+                    <a class="navbar-brand text-light" href="index.html">Food Database</a>
+
+                    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a href="index.html" class="nav-link text-secondary">Home</a></li>
+                            <li class="nav-item"><a href="dishes.html" class="nav-link text-secondary">Dishes</a></li>
+                            <li class="nav-item"><a href="report.html" class="nav-link text-secondary">Food Report</a>
+                            </li>
+                            <li class="nav-item"><a href="tips.html" class="nav-link text-secondary">Cooking Tips</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <div class="container-fluid">
+            <h2 class="py-3">Food Details</h2>
+        </div>
+        <div class="row container-fluid">
+            <div class="col col-md-4">
+                <div class="card py-3">
+                    <div id="dishDetails" class="container-fluid">
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+    </main>
+    <footer></footer>
+
+    <script>
+        let dishes = [
+            {
+                id: "1",
+                name: "Pizza",
+                cuisine: "Italian",
+                ingredients: "Dough, Tomato sauce, Cheese, Toppings.",
+                detail: "A delicious Italian dish with a variety of toppings."
+            },
+            {
+                id: "2",
+                name: "Sushi",
+                cuisine: "Japanese",
+                ingredients: "Rice, fish, seaweed, vegetable.",
+                detail: "A delicious Japanese dish with a variety of items."
+            },
+            {
+                id: "3",
+                name: "Tacos",
+                cuisine: "Mexican",
+                ingredients: "Tortillas, meat, salsa, toppings.",
+                detail: "A delicious Mexican dish with a variety of toppings."
+            },
+            {
+                id: "4",
+                name: "Pasta Carbonara",
+                cuisine: "Italian",
+                ingredients: "Pasta, egg, cheese, bacons.",
+                detail: "A delicious Italian dish with cheese and eggy flavour."
+            },
+            {
+                id: "5",
+                name: "Chocolate Cake",
+                cuisine: "Dessert",
+                ingredients: "Flour, sugar, cocoa, eggs, chocolate.",
+                detail: "A heaven for sweet tooth people."
+            },
+            {
+                id: "6",
+                name: "Biriyani",
+                cuisine: "Indian",
+                ingredients: "Rice, meat, spices, vegetables.",
+                detail: "A delicious Indian dish with a variety local addtional veriations."
+            }
+
+        ]
+
+
+        function getDishId(id) {
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+        let dishId = getDishId('dish')
+
+        let dishDetailsElement = document.getElementById('dishDetails')
+
+        let dish
+        for (let i = 0; i < dishes.length; i++) {
+            if (dishes[i].id === dishId) {
+                dish = dishes[i]
+                break;
+            }
+        }
+
+        if (dish) {
+            dishDetailsElement.innerHTML = `
+            <h3>${dish.name}</h3>
+            <p><strong>Cuisine: </strong>${dish.cuisine}</p>
+            <p><strong>Ingredients: </strong>${dish.ingredients}</p>
+            <p><strong>Details: </strong>${dish.detail}</p>
+            `
+        }
+        else dishDetailsElement.innerHTML = `<h3>Sorry! No Food Availabe.</h3>`
+
+    </script>
+</body>
+
+</html>

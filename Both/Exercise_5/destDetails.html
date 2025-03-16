@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg bg-dark px-3">
+            <div class="container-fluid d-flex justify-content-between">
+
+                <div>
+                    <a class="navbar-brand text-light" href="index.html">Travel Database</a>
+                    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a href="index.html" class="nav-link text-light">Home</a></li>
+                            <li class="nav-item"><a href="destinations.html"
+                                    class="nav-link text-secondary">Destinations</a></li>
+                            <li class="nav-item"><a href="report.html" class="nav-link text-secondary">Travel Report</a>
+                            </li>
+                            <li class="nav-item"><a href="tips.html" class="nav-link text-secondary">Travel Tips</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container py-3">
+            <h2>Travel Details</h2>
+        </div>
+        <section>
+            <div class="d-flex justify-content-center">
+                <div class="card">
+                    <div id="details" class="card-body">
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+    <!-- <footer>
+        <p>&copy; 2025 Travel Company.All Rights Reserved.</p>
+    </footer> -->
+    <script>
+        let destinations = [
+            {
+                id: "1",
+                name: "Paris",
+                duration: 7,
+                high: "Eiffel Tower, Louvre Museum.",
+                details: "wonderful trip to the romantic city of Paris."
+            },
+            {
+                id: "2",
+                name: "Tokyo",
+                duration: 5,
+                high: "Tokyo Tower, Meiji Shrine.",
+                details: "wonderful trip to the cultural and tech hub of Japan."
+            },
+            {
+                id: "3",
+                name: "Rome",
+                duration: 3,
+                high: "Colosseume, Vatican City..",
+                details: "Experience Italian delicacies and the historic city of Rome."
+            },
+            {
+                id: "4",
+                name: "New York City",
+                duration: 11,
+                high: "Statue of Liberty, Central Park.",
+                details: "One of the most famous cities of the world."
+            },
+            {
+                id: "5",
+                name: "Cape Town",
+                duration: 4,
+                high: "Table Mountain, Robben Island.",
+                details: "Experience the immence natural beauty and friendly people."
+            },
+            {
+                id: "6",
+                name: "Sydney",
+                duration: 10,
+                high: "Sydney Opera House, Bondi Beach.",
+                details: "Spectacular beaches and big forests filled with attractive animals."
+            }
+        ]
+
+        function getPlaceId(id) {
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+
+        let placeId = getPlaceId('id')
+
+
+        let detailsElement = document.getElementById("details")
+
+        let place
+        for (let i = 0; i < destinations.length; i++) {
+            if (destinations[i].id === placeId) {
+                place = { ...destinations[i] }
+                break;
+            }
+        }
+        if (place) {
+            detailsElement.innerHTML = `
+            <h5>${place.name}</h5>
+            <p><strong>Duration: </strong>${place.duration} Days</p>
+            <p><strong>Highlights: </strong>${place.high}</p>
+            <p><strong>Details: </strong>${place.details}</p>
+        `
+        }
+        else detailsElement.innerHTML = `<h3>Sorry No Destinations availabe</h3>`
+
+
+    </script>
+</body>
+
+</html>

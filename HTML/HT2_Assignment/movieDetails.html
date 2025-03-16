@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+</head>
+
+<body>
+    <header>
+        <a href="index.html">Movies Database</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="report.html">Report</a></li>
+            </ul>
+        </nav>
+        <h2>Movie Details</h2>
+    </header>
+    <main>
+        <div id="movieDetails">
+
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Company Name. All Rights Reserved.</p>
+    </footer>
+    <script>
+        let movies = [
+            {
+                id: "1",
+                genre: "Action",
+                name: "Movie 1",
+                details: "This is an action packed film.",
+                release_date: "2023-01-15",
+                director: "John Doe"
+            },
+            {
+                id: "2",
+                genre: "Drama",
+                name: "Movie 2",
+                details: "A dramatic story unfolds in the movie.",
+                release_date: "2023-02-20",
+                director: "Jane Smith"
+            },
+            {
+                id: "3",
+                genre: "Comedy",
+                name: "Movie 3",
+                details: "Get ready to laugh with this comedy.",
+                release_date: "2023-05-20",
+                director: "Jane Walk"
+            }
+        ]
+
+
+        function getMovieId(id) {
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+
+        let movieId = getMovieId('movie')
+        //console.log(movieId)
+
+        let movieDetailsElement = document.getElementById("movieDetails")
+        //console.log(movieDetailsElement)
+
+        let movie
+        for (let i = 0; i < movies.length; i++) {
+            if (movies[i].id === movieId) {
+                movie = movies[i]
+                break
+            }
+        }
+
+        movieDetailsElement.innerHTML = `
+            <h2>${movie.name}</h2>
+            <p><strong>Genre: </strong>${movie.genre}</p>
+            <p><strong>Details: </strong>${movie.details}</p>
+            <p><strong>Release Date: </strong>${movie.release_date}</p>
+            <p><strong>Director: </strong>${movie.director}</p>
+        `
+    </script>
+</body>
+
+</html>

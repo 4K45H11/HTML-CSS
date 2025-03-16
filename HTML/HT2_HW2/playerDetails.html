@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Details</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Players Database</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="players.html">Players</a></li>
+                <li><a href="report.html">Report</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Player Details</h1>
+        <section id="playerdetails">
+
+        </section>
+    </main>
+    <footer></footer>
+    <script>
+        let players = [
+        {
+                id : "1",
+                name : "Player 1",
+                country : "India",
+                role : "Batsman"
+            },
+            {
+                id : "2",
+                name : "Player 2",
+                country : "Australia",
+                role : "Bowler"
+            }
+        ]
+
+        function getPlayerById (id){
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+
+        let playerId = getPlayerById('player')
+
+        let playerElement = document.getElementById('playerdetails')
+        let player
+        for(let i = 0; i<players.length; i++){
+            if(playerId === players[i].id){
+                player = players[i]
+                break
+            }
+        }
+        console.log(player)
+        if(player){
+
+            playerElement.innerHTML = `
+            <h2>${player.name}</h2>
+            <p><strong>Country : </strong>${player.country}</p>
+            <p><strong>Role : </strong>${player.role}</p> `
+        }
+        else{
+            playerElement.innerHTML = `<p>Sorry! No players available.</p>`
+        }
+    </script>
+</body>
+</html>

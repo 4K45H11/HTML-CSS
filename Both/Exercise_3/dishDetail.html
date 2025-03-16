@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dish Details</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">Food Database</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dishes.html">Dishes</a></li>
+            <li><a href="report.html">Food Report</a></li>
+            <li><a href="tips.html">Cooking Tips</a></li>
+        </ul>
+        <h2>Food Details</h2>
+    </header>
+    <main>
+        <div id="dishDetails">
+
+        </div>
+    </main>
+    <footer></footer>
+
+    <script>
+        let dishes = [
+            {
+                id : "1",
+                name : "Pizza",
+                cuisine : "Italian",
+                ingredients : "Dough, Tomato sauce, Cheese, Toppings.",
+                detail : "A delicious Italian dish with a variety of toppings."
+            },
+            {
+                id : "2",
+                name : "Sushi",
+                cuisine : "Japanese",
+                ingredients : "Rice, fish, seaweed, vegetable.",
+                detail : "A delicious Japanese dish with a variety of items."
+            },
+            {
+                id : "3",
+                name : "Tacos",
+                cuisine : "Mexican",
+                ingredients : "Tortillas, meat, salsa, toppings.",
+                detail : "A delicious Mexican dish with a variety of toppings."
+            },
+            {
+                id : "4",
+                name : "Pasta Carbonara",
+                cuisine : "Italian",
+                ingredients : "Pasta, egg, cheese, bacons.",
+                detail : "A delicious Italian dish with cheese and eggy flavour."
+            },
+            {
+                id : "5",
+                name : "Chocolate Cake",
+                cuisine : "Dessert",
+                ingredients : "Flour, sugar, cocoa, eggs, chocolate.",
+                detail : "A heaven for sweet tooth people."
+            },
+            {
+                id : "6",
+                name : "Biriyani",
+                cuisine : "Indian",
+                ingredients : "Rice, meat, spices, vegetables.",
+                detail : "A delicious Indian dish with a variety local addtional veriations."
+            }
+            
+        ]
+
+
+        function getDishId(id){
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+        let dishId = getDishId('dish')
+
+        let dishDetailsElement = document.getElementById('dishDetails')
+
+        let dish
+        for(let i = 0; i<dishes.length; i++){
+            if(dishes[i].id === dishId){
+              dish = dishes[i]
+              break;  
+            }
+        }
+
+        if(dish){
+            dishDetailsElement.innerHTML = `
+            <h3>${dish.name}</h3>
+            <p><strong>Cuisine: </strong>${dish.cuisine}</p>
+            <p><strong>Ingredients: </strong>${dish.ingredients}</p>
+            <p><strong>Details: </strong>${dish.detail}</p>
+            `
+        }
+        else dishDetailsElement.innerHTML = `<h3>Sorry! No Food Availabe.</h3>`
+
+    </script>
+</body>
+</html>

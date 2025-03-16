@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Employee Details</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="HT2_CW1.html">Company Logo</a>
+            <ul>
+                <li><a href="HT2_CW1.html">Home</a></li>
+                <li><a href="HT2_CW2.html">Employees</a></li>
+            </ul>
+
+            <h1>Employee Details:</h1>
+        </nav>
+    </header>
+    <main>
+        <section id="employeeDetais"></section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Company Name; All rights reserved</p>
+    </footer>
+
+    <script>
+        let employees =[
+        {
+                id : "1",
+                name: "John Doe",
+                title : "Software Developer",
+                dept : "IT"
+            },
+            {
+                id : "2",
+                name: "Jane Smith",
+                title : "Designer",
+                dept : "Design"
+            },
+            {
+                id : "3",
+                name: "Bob Johnson",
+                title : "Project Manager",
+                dept : "Management"
+            }
+        ]
+        /*step 1 -> get the id from the url
+          step 2 -> find the id in the data base(array here)
+          step 3 -> display the details*/
+
+        //step -1
+        function getParameterById(id){
+           // console.log(window.location.href) 
+            let url = new URL(window.location.href) //had to type cast into object from string to get the id via . operator
+            //console.log(typeof(url))
+            return url.searchParams.get(id) 
+        }
+        let emploYeeId = getParameterById('id')
+
+        //step -2
+        let employee;
+
+        for(let i = 0; i<employees.length; i++){
+            if(employees[i].id === emploYeeId) employee = employees[i]
+        }
+
+       // console.log(employee)
+
+       //step -3
+       let employeeDetailElement = document.getElementById('employeeDetais')
+       if(employee){
+        //console.log(employeeDetailElement)
+        employeeDetailElement.innerHTML = `
+            <h2>${employee.name}</h2>
+            <ul>
+                <li>Name: ${employee.name}</li>
+                <li>Designation: ${employee.title}</li>
+                <li>Departmnet: ${employee.dept}</li>
+            </ul>
+        ` }
+        else employeeDetailElement.innerHTML = `
+            <p>Sorry! No employee details found.</p>
+        `
+    </script>
+</body>
+</html>

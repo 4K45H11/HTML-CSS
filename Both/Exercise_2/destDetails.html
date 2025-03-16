@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details</title>
+</head>
+<body>
+    <header>
+        <a href="index.html">Travel Database</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="report.html">Travel Report</a></li>
+            <li><a href="tips.html">Travel Tips</a></li>
+        </ul>
+    </header>
+    <main>
+        <h2>Travel Details</h2>
+        <section id="details">
+
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Travel Company.All Rights Reserved.</p>
+    </footer>
+    <script>
+        let destinations = [
+            {
+                id : "1",
+                name : "Paris",
+                duration : 7,
+                high : "Eiffel Tower, Louvre Museum.",
+                details : "wonderful trip to the romantic city of Paris."
+            },
+            {
+                id : "2",
+                name : "Tokyo",
+                duration : 5,
+                high : "Tokyo Tower, Meiji Shrine.",
+                details : "wonderful trip to the cultural and tech hub of Japan."
+            },
+            {
+                id : "3",
+                name : "Rome",
+                duration : 3,
+                high : "Colosseume, Vatican City..",
+                details : "Experience Italian delicacies and the historic city of Rome."
+            },
+            {
+                id : "4",
+                name : "New York City",
+                duration : 11,
+                high : "Statue of Liberty, Central Park.",
+                details : "One of the most famous cities of the world."
+            },
+            {
+                id : "5",
+                name : "Cape Town",
+                duration : 4,
+                high : "Table Mountain, Robben Island.",
+                details : "Experience the immence natural beauty and friendly people."
+            },
+            {
+                id : "6",
+                name : "Sydney",
+                duration : 10,
+                high : "Sydney Opera House, Bondi Beach.",
+                details : "Spectacular beaches and big forests filled with attractive animals."
+            }
+        ]
+
+        function getPlaceId (id){
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+
+        let placeId = getPlaceId('id')
+        
+
+        let detailsElement = document.getElementById("details")
+
+        let place
+        for(let i = 0; i<destinations.length; i++){
+            if(destinations[i].id === placeId){
+                place = {...destinations[i]}
+                break;
+            }
+        }
+        if(place){
+            detailsElement.innerHTML = `
+            <h2>${place.name}</h2>
+            <p><strong>Duration: </strong>${place.duration} Days</p>
+            <p><strong>Highlights: </strong>${place.high}</p>
+            <p><strong>Details: </strong>${place.details}</p>
+        `
+        }
+        else detailsElement.innerHTML = `<p>Sorry No Destinations availabe</p>`
+
+        
+    </script>
+</body>
+</html>
